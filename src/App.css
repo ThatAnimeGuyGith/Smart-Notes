@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 .note-text {
   white-space: pre-wrap;
 }
