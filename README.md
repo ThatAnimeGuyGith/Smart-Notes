@@ -9,9 +9,9 @@ This uses react, typescript and vite, all managed by bun :)
 
 # Future Features I'm working on
 
-- [] Actually Storing Notes
-- [] Text Features
-- [] Image embedding
-- [] Excalidraw Boards & Embedding
-- [] Live Collaboration
-- [] Ma-yyybe an obsidian-esque knowledge graph
+- [ ] Actually Storing Notes
+- [ ] Text Features
+- [ ] Image embedding
+- [ ] Excalidraw Boards & Embedding
+- [ ] Live Collaboration
+- [ ] Ma-yyybe an obsidian-esque knowledge graph
