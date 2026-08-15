@@ -9,8 +9,11 @@ interface Note {
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
+  const [tempTitle, setTempTitle] = useState<string>('')
+  const [text , setText] = useState('')
+
   const addNote = (title: string, content: string) => {
-    if (title=='') {
+    if (title.trim()=='') {
       alert('Error: Note title cannot be empty.')
       // content and title can be empty somehow without throwing an error, so i did it myself
       return
@@ -24,8 +27,10 @@ function App() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
   }
 
-  const [tempTitle, setTempTitle] = useState<string>('')
-  const [text , setText] = useState('')
+  const deleteNote = (id: number) => {
+    setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
+  }
+
 
   return (
     <>
@@ -57,15 +62,6 @@ function App() {
           }> Clear Note Body
         </button>
 
-          <button className="note-button clear-button" onClick={() =>
-          {
-            setNotes(notes.filter((_, i) => i !== notes.length - 1))
-            setTempTitle('')
-            setText('')
-          }
-          }> Delete Note
-        </button>
-
         <button className="note-button" onClick={() =>
           {
             setNotes([])
@@ -92,6 +88,12 @@ function App() {
           <div key={note.id}>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
+            <button className="note-button clear-button" onClick={() =>
+              {
+                deleteNote(note.id)
+              }
+              }> Delete Note
+            </button>
             <div className="spacer"></div>
           </div>
         ))}
