@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import './App.css'
+import { getItem, setItem } from './utils/localStorage'
 
 interface Note {
   id: number
@@ -8,9 +9,18 @@ interface Note {
 }
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>([])
+  const [notes, setNotes] = useState<Note[]>(() => {
+    const item = getItem('notes')
+    return item || []
+  });
+
+  const [tempTitle, setTempTitle] = useState<string>('')
+  const [text , setText] = useState('')
+  const [activeNoteId, setActiveNoteId] = useState<number | null>(null)
+  const scrollPos = useRef<number>(0)
+
   const addNote = (title: string, content: string) => {
-    if (title=='') {
+    if (title.trim()=='') {
       alert('Error: Note title cannot be empty.')
       // content and title can be empty somehow without throwing an error, so i did it myself
       return
@@ -24,8 +34,19 @@ function App() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
   }
 
-  const [tempTitle, setTempTitle] = useState<string>('')
-  const [text , setText] = useState('')
+  const deleteNote = (id: number) => {
+    setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
+  }
+
+  const clearInput = () => {
+    setText('')
+    setTempTitle('')
+    setActiveNoteId(null)
+  }
+
+  useEffect(() => {
+    setItem("notes", notes)
+  }, [notes])
 
   return (
     <>
@@ -43,11 +64,24 @@ function App() {
       <div className="container">
         <button className="note-button" onClick={() =>
           {
-            addNote(tempTitle, text)
-            setText('')
-            setTempTitle('')
+            if (activeNoteId !== null) {
+              setNotes((prevNotes) => prevNotes.map(note => {
+                if (note.id === activeNoteId) {
+                  return { ...note, title: tempTitle, content: text };
+                }
+                return note;
+              }));
+              setActiveNoteId(null);
+              clearInput()
+              window.scrollTo(0, scrollPos.current)
+              scrollPos.current = 0
+            } else {
+              addNote(tempTitle, text)
+              setText('')
+              setTempTitle('')
+            }
           }
-          }> New Note
+          }> {activeNoteId === null ? 'New Note' : 'Save Note'}
         </button>
 
         <button className="note-button clear-button" onClick={() =>
@@ -57,20 +91,10 @@ function App() {
           }> Clear Note Body
         </button>
 
-          <button className="note-button clear-button" onClick={() =>
-          {
-            setNotes(notes.filter((_, i) => i !== notes.length - 1))
-            setTempTitle('')
-            setText('')
-          }
-          }> Delete Note
-        </button>
-
         <button className="note-button" onClick={() =>
           {
             setNotes([])
-            setTempTitle('')
-            setText('')
+            clearInput()
           }
           }> Delete All
         </button>
@@ -92,6 +116,26 @@ function App() {
           <div key={note.id}>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
+
+            <div className="container">
+              <button className="note-button" onClick={() =>
+                {
+                  setActiveNoteId(note.id)
+                  setText(note.content)
+                  setTempTitle(note.title)
+                  scrollPos.current = window.scrollY
+                  window.scrollTo(0, 0);
+                }
+                }> Open Note
+              </button>
+
+              <button className="note-button clear-button" onClick={() =>
+                {
+                  deleteNote(note.id)
+                }
+                }> Delete Note
+              </button>
+            </div>
             <div className="spacer"></div>
           </div>
         ))}
