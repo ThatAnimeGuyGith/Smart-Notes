@@ -1,5 +1,10 @@
 <img src=".github/splashart.png" alt="Smart Notes"/>
 
+[![License]https://img.shields.io/badge/License-PolyForm%20Noncommercial%201.0.0-green.svg](LICENSE.md)
+![https://img.shields.io/badge/Discord-Coming%20Soon-Discord?labelColor=%235865F2]
+[![https://good-labs.github.io/greater-good-affirmation/assets/images/badge.svg](https://good-labs.github.io/greater-good-affirmation/assets/images/badge.svg)](https://good-labs.github.io/greater-good-affirmation)
+
+
 # Introduction
 
 This is a simple React + TypeScript + Vite app i'm working on to learn react and app-making.
