@@ -11,10 +11,11 @@ Currently, it's still in a basic phase, where im figuring out how to make this
 
 This uses react, typescript and vite, all managed by bun :)
 
-# Future Features I'm working on
+# TO-DO / Plans
 
-- [ ] Actually Storing Notes
-- [ ] Text Features
+- [X] Barebones version that allows storing notes via localStorage with a one-page layout
+- [ ] Actually Storing / Opening Local Notes
+- [ ] A Modular Text System that supports: different headers bold, italic, highlighting, to-do list, bullet list, numbered list, toggle list, code blocks, block equation (LaTeX) and pages.
 - [ ] Image embedding
 - [ ] Excalidraw Boards & Embedding
 - [ ] Live Collaboration
