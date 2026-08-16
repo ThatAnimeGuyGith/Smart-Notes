@@ -1,3 +1,7 @@
+<img src=".github/splashart.png" alt="Smart Notes"/>
+
+# Introduction
+
 This is a simple React + TypeScript + Vite app i'm working on to learn react and app-making.
 The goal of this app is to be a Notes app that combines the best features of Obsidian, Notion, Microslop Word and more!
 
