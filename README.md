@@ -19,7 +19,10 @@ This uses react, typescript and vite, all managed by bun :)
 # TO-DO / Plans
 
 - [X] Barebones version that allows storing notes via localStorage with a one-page layout
+- [X] Split the big App.tsx into multiple components
+- [X] Make it into an actual app using Tauri
 - [ ] Actually Storing / Opening Local Notes
+- [ ] Multiple pages / docking system
 - [ ] A Modular Text System that supports: different headers bold, italic, highlighting, to-do list, bullet list, numbered list, toggle list, code blocks, block equation (LaTeX) and pages.
 - [ ] Image embedding
 - [ ] Excalidraw Boards & Embedding
