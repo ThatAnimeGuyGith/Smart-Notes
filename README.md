@@ -25,3 +25,13 @@ This uses react, typescript and vite, all managed by bun :)
 - [ ] Excalidraw Boards & Embedding
 - [ ] Live Collaboration
 - [ ] Ma-yyybe an obsidian-esque knowledge graph
+
+---
+
+# License
+
+Smart Notes is currently licensed under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/).
+
+The license for future versions of this project may change at any time. Each version is governed by the license applicable to that version.
+
+Please check the `LICENSE` file and the version you are using for the applicable license terms.
